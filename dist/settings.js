@@ -121,7 +121,8 @@ exports.app.put('/videos/:id', (req, res) => {
     else {
         minAgeRestriction = null;
     }
-    if (typeof publicationDate !== "undefined") {
+    const dateInspection = (/\d{4}-\d{2}-\d{2}T\d{2}:d{2}:d{2}.d{3}Z/gi).test(publicationDate);
+    if (typeof publicationDate !== "undefined" && !dateInspection) {
         errors.errorsMessages.push({
             message: 'Invalid publicationDate',
             field: 'publicationDate'
