@@ -199,7 +199,7 @@ app.put('/videos/:id', (req: RequestWithBodyAndParams<Params, UpdateVideoDto>, r
 app.delete('/videos/:id', (req: Request, res: Response) => {
     for(let i = 0; i < videos.length; ++i) {
         if (videos[i].id === +req.params.id) {
-            videos.slice(i, 1)
+            videos.splice(i, 1)
             res.sendStatus(204)
             return
         }
