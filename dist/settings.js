@@ -107,7 +107,7 @@ exports.app.put('/videos/:id', (req, res) => {
         availableResolutions = [];
     }
     if (typeof canBeDownloaded === "undefined") {
-        canBeDownloaded = false;
+        canBeDownloaded = false && errors.errorsMessages.push({ message: 'Invalid canBeDownloaded', field: 'canBeDownloaded' });
     }
     if (typeof minAgeRestriction !== "undefined" && typeof minAgeRestriction === "number") {
         minAgeRestriction > 18 || minAgeRestriction < 1 && errors.errorsMessages.push({ message: 'Invalid minAgeRestriction', field: 'minAgeRestriction' });
