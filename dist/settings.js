@@ -106,8 +106,11 @@ exports.app.put('/videos/:id', (req, res) => {
     else {
         availableResolutions = [];
     }
+    if (typeof canBeDownloaded === "undefined" && typeof canBeDownloaded !== "boolean") {
+        errors.errorsMessages.push({ message: 'Invalid canBeDownloaded', field: 'canBeDownloaded' });
+    }
     if (typeof canBeDownloaded === "undefined") {
-        canBeDownloaded = false && errors.errorsMessages.push({ message: 'Invalid canBeDownloaded', field: 'canBeDownloaded' });
+        canBeDownloaded = false;
     }
     if (typeof minAgeRestriction !== "undefined" && typeof minAgeRestriction === "number") {
         minAgeRestriction > 18 || minAgeRestriction < 1 && errors.errorsMessages.push({ message: 'Invalid minAgeRestriction', field: 'minAgeRestriction' });

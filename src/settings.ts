@@ -159,8 +159,12 @@ app.put('/videos/:id', (req: RequestWithBodyAndParams<Params, UpdateVideoDto>, r
         availableResolutions = []
     }
 
+    if (typeof canBeDownloaded === "undefined" && typeof canBeDownloaded !== "boolean") {
+        errors.errorsMessages.push({message: 'Invalid canBeDownloaded', field: 'canBeDownloaded'})
+    }
+
     if (typeof canBeDownloaded === "undefined") {
-        canBeDownloaded = false  && errors.errorsMessages.push({message: 'Invalid canBeDownloaded', field: 'canBeDownloaded'})
+        canBeDownloaded = false 
     }
 
     if (typeof minAgeRestriction !== "undefined" && typeof minAgeRestriction === "number")  {
