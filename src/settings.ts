@@ -48,7 +48,7 @@ type VideoType = {
     availableResolutions: typeof AvailableResolutions
 }
 
-const videos: VideoType[] = [
+let videos: VideoType[] = [
     {
         id: 1, 
         title: 'Путь самурая', 

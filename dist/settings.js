@@ -8,7 +8,7 @@ const express_1 = __importDefault(require("express"));
 exports.app = (0, express_1.default)();
 exports.app.use(express_1.default.json());
 const AvailableResolutions = ["P144", "P240", "P360", "P480", "P720", "P1080", "P1440", "P2160"];
-const videos = [
+let videos = [
     {
         id: 1,
         title: 'Путь самурая',
