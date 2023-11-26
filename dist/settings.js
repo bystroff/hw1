@@ -121,11 +121,10 @@ exports.app.put('/videos/:id', (req, res) => {
     else {
         minAgeRestriction = null;
     }
-    const dateInspection = (/\d{4}-\d{2}-\d{2}T\d{2}:d{2}:d{2}.d{3}Z/gi).test(publicationDate);
-    if (typeof publicationDate !== "undefined" && !dateInspection) {
+    if (!publicationDate || typeof publicationDate !== 'string' || !publicationDate.trim()) {
         errors.errorsMessages.push({
-            message: 'Invalid publicationDate',
-            field: 'publicationDate'
+            'message': 'PublicationDate is incorrect',
+            'field': 'publicationDate'
         });
     }
     if (errors.errorsMessages.length) {

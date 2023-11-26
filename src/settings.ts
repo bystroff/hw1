@@ -159,7 +159,7 @@ app.put('/videos/:id', (req: RequestWithBodyAndParams<Params, UpdateVideoDto>, r
         availableResolutions = []
     }
 
-    if ( typeof canBeDownloaded !== "boolean") {
+    if (typeof canBeDownloaded !== "boolean") {
         errors.errorsMessages.push({
             message: 'Invalid canBeDownloaded', 
             field: 'canBeDownloaded'
@@ -176,13 +176,12 @@ app.put('/videos/:id', (req: RequestWithBodyAndParams<Params, UpdateVideoDto>, r
         minAgeRestriction = null
     }
 
-    const dateInspection: boolean = (/\d{4}-\d{2}-\d{2}T\d{2}:d{2}:d{2}.d{3}Z/gi).test(publicationDate)
-    if (typeof publicationDate !== "undefined" && !dateInspection) {
+    if (!publicationDate || typeof publicationDate !== 'string' || !publicationDate.trim()) {
         errors.errorsMessages.push({
-            message: 'Invalid publicationDate', 
-            field: 'publicationDate'
+          'message': 'PublicationDate is incorrect',
+          'field': 'publicationDate'
         })
-    }
+      }
 
     if (errors.errorsMessages.length) {
         res.status(400).send(errors)
