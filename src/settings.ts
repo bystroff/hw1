@@ -176,6 +176,13 @@ app.put('/videos/:id', (req: RequestWithBodyAndParams<Params, UpdateVideoDto>, r
         minAgeRestriction = null
     }
 
+    if (typeof publicationDate !== "undefined") {
+        errors.errorsMessages.push({
+            message: 'Invalid publicationDate', 
+            field: 'publicationDate'
+        })
+    }
+
     if (errors.errorsMessages.length) {
         res.status(400).send(errors)
         return
