@@ -48,7 +48,7 @@ type VideoType = {
     availableResolutions: typeof AvailableResolutions
 }
 
-let videos: VideoType[] = [
+const videos: VideoType[] = [
     {
         id: 1, 
         title: 'Путь самурая', 
@@ -208,7 +208,7 @@ app.delete('/videos/:id', (req: Request, res: Response) => {
     res.sendStatus(404)
   })
 
-  app.delete('/testing/all-data', (req: Request, res: Response) => {
-    videos = [];
+app.delete('/testing/all-data', (req: Request, res: Response) => {
+    videos = []
     res.sendStatus(204)
 })
